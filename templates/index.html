@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Home | LicenseWise{% endblock %}
+{% block content %}
+<section class="hero-section">
+ <div class="container py-5">
+  <div class="row align-items-center g-5">
+   <div class="col-lg-7">
+    <span class="eyebrow"><i class="bi bi-stars me-1"></i> SMART SOFTWARE LICENSING</span>
+    <h1 class="display-4 fw-bold mt-3">Choose the right license.<br><span class="gradient-text">Build with confidence.</span></h1>
+    <p class="lead text-secondary mt-3">Understand open-source license conditions and find an option that aligns with your project's goals, sharing preferences, and responsibilities.</p>
+    <div class="d-flex flex-wrap gap-3 mt-4">
+      <a class="btn btn-primary btn-lg rounded-pill px-4" href="{{ url_for('recommendation') }}">Get Started <i class="bi bi-arrow-right ms-1"></i></a>
+      <a class="btn btn-outline-primary btn-lg rounded-pill px-4" href="{{ url_for('licenses') }}">Explore Licenses</a>
+    </div>
+    <div class="d-flex flex-wrap gap-4 mt-4 small text-secondary"><span><i class="bi bi-check-circle-fill text-success me-1"></i> Rule-based results</span><span><i class="bi bi-database-check text-success me-1"></i> Saved history</span><span><i class="bi bi-shield-check text-success me-1"></i> License awareness</span></div>
+   </div>
+   <div class="col-lg-5">
+    <div class="hero-card">
+     <div class="license-orbit"><i class="bi bi-file-earmark-lock2"></i></div>
+     <h4 class="fw-bold text-center mt-3">Make informed decisions</h4>
+     <p class="text-secondary text-center mb-4">Explore permissions, obligations, and license compatibility.</p>
+     <div class="mini-stat"><span><i class="bi bi-file-earmark-text"></i> MIT License</span><span class="text-success">Permissive</span></div>
+     <div class="mini-stat"><span><i class="bi bi-arrow-repeat"></i> GNU GPL</span><span class="text-primary">Copyleft</span></div>
+     <div class="mini-stat"><span><i class="bi bi-shield-lock"></i> Apache 2.0</span><span class="text-info">Patent grant</span></div>
+     <div class="mini-stat"><span><i class="bi bi-code-square"></i> BSD</span><span class="text-success">Permissive</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+<section class="container py-5">
+ <div class="text-center section-heading mb-4"><span class="eyebrow">WHY IT MATTERS</span><h2 class="fw-bold mt-2">Licensing is part of responsible development</h2><p class="text-secondary">A license tells others how they may use, change, and share your work.</p></div>
+ <div class="row g-4">
+  <div class="col-md-4"><div class="feature-card h-100"><i class="bi bi-c-circle"></i><h5>Respect copyright</h5><p>Understand ownership, notices, and the conditions attached to software reuse.</p></div></div>
+  <div class="col-md-4"><div class="feature-card h-100"><i class="bi bi-diagram-3"></i><h5>Make informed choices</h5><p>Compare permissive and copyleft models before publishing your project.</p></div></div>
+  <div class="col-md-4"><div class="feature-card h-100"><i class="bi bi-people"></i><h5>Encourage ethical sharing</h5><p>Help users and contributors understand their rights and responsibilities.</p></div></div>
+ </div>
+</section>
+<section class="container pb-5"><div class="cta-panel p-4 p-md-5 text-center"><h2 class="fw-bold">Not sure which license fits?</h2><p class="mb-4">Answer a few questions and receive a transparent recommendation.</p><a href="{{ url_for('recommendation') }}" class="btn btn-light btn-lg rounded-pill px-4">Start Recommendation <i class="bi bi-arrow-right"></i></a></div></section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Recommendation Result | LicenseWise{% endblock %}
+{% block content %}
+{% set key = result.recommended_key %}
+{% set item = licenses[key] %}
+<section class="page-hero"><div class="container"><span class="eyebrow">RECOMMENDATION RESULT</span><h1 class="fw-bold mt-2">Your project: {{ project_name }}</h1><p class="lead text-secondary">The recommendation below is based on the answers submitted to the rule engine.</p></div></section>
+<section class="container py-4">
+<div class="result-banner mb-4"><div class="d-flex flex-wrap justify-content-between gap-3 align-items-center"><div><span class="badge text-bg-light mb-2">TOP MATCH</span><h2 class="fw-bold mb-1">{{ item.name }}</h2><p class="mb-0">{{ item.short }}</p></div><div class="result-symbol"><i class="bi bi-patch-check"></i></div></div></div>
+<div class="row g-4"><div class="col-lg-8"><div class="content-card"><h4>Why this license?</h4><p>{{ result.explanation }}</p><h4 class="mt-4">Main permissions</h4><ul>{% for x in item.permissions %}<li>{{ x }}</li>{% endfor %}</ul><h4 class="mt-4">Main restrictions and conditions</h4><ul>{% for x in item.conditions + item.restrictions %}<li>{{ x }}</li>{% endfor %}</ul><h4 class="mt-4">Developer responsibilities</h4><p>Preserve the required notices, include the license text where required, follow distribution and source-code obligations where applicable, and review third-party dependencies separately.</p><div class="row g-3 mt-2"><div class="col-md-6"><div class="soft-panel"><h5>Advantages</h5><ul>{% for x in item.advantages %}<li>{{ x }}</li>{% endfor %}</ul></div></div><div class="col-md-6"><div class="soft-panel"><h5>Disadvantages</h5><ul>{% for x in item.disadvantages %}<li>{{ x }}</li>{% endfor %}</ul></div></div></div>
+{% if result.conflicts %}<div class="alert alert-warning mt-4"><h5><i class="bi bi-exclamation-triangle"></i> Requirements to review</h5><ul class="mb-0">{% for x in result.conflicts %}<li>{{ x }}</li>{% endfor %}</ul></div>{% endif %}
+<a class="btn btn-primary rounded-pill mt-3" href="{{ item.url }}" target="_blank" rel="noopener">Learn More <i class="bi bi-box-arrow-up-right"></i></a></div></div>
+<div class="col-lg-4"><div class="content-card"><h4>Alternative licenses</h4>{% for alt in result.alternatives %}<div class="alternative-item"><b>{{ licenses[alt].name }}</b><p class="small text-secondary mb-2">{{ licenses[alt].short }}</p><a href="{{ url_for('license_detail', key=alt) }}">View details</a></div>{% endfor %}<a class="btn btn-outline-primary rounded-pill w-100 mt-3" href="{{ url_for('comparison') }}">Compare all licenses</a><a class="btn btn-light rounded-pill w-100 mt-2" href="{{ url_for('history') }}">View history</a></div></div></div>
+<p class="disclaimer mt-4"><b>Disclaimer:</b> This tool provides educational information, not legal advice. It uses simplified rules and cannot assess every project's facts, dependencies, jurisdiction, or license compatibility. Review the complete license texts and seek qualified legal advice where appropriate.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Contact | LicenseWise{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="eyebrow">GET IN TOUCH</span><h1 class="fw-bold mt-2">Contact the project team</h1><p class="lead text-secondary">Send a question or feedback about this educational project.</p></div></section>
+<section class="container py-4"><div class="row justify-content-center"><div class="col-lg-7"><form method="post" class="content-card"><div class="mb-3"><label class="form-label fw-semibold">Name</label><input class="form-control" name="name" maxlength="80" required></div><div class="mb-3"><label class="form-label fw-semibold">Email</label><input class="form-control" type="email" name="email" maxlength="120" required></div><div class="mb-3"><label class="form-label fw-semibold">Message</label><textarea class="form-control" name="message" rows="5" maxlength="2000" required></textarea></div><button class="btn btn-primary rounded-pill px-4">Send Message <i class="bi bi-send"></i></button></form></div></div></section>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}License Comparison | LicenseWise{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="eyebrow">SIDE-BY-SIDE VIEW</span><h1 class="fw-bold mt-2">Compare the licenses</h1><p class="lead text-secondary">A high-level educational comparison of four common licenses.</p></div></section>
+<section class="container py-4"><div class="content-card table-responsive"><table class="table comparison-table align-middle"><thead><tr><th>Feature</th>{% for key,item in licenses.items() %}<th>{{ item.name }}</th>{% endfor %}</tr></thead><tbody>
+<tr><th>Commercial use</th>{% for key,item in licenses.items() %}<td><span class="status yes">Yes</span></td>{% endfor %}</tr>
+<tr><th>Modification</th>{% for key,item in licenses.items() %}<td><span class="status yes">Yes</span></td>{% endfor %}</tr>
+<tr><th>Distribution</th>{% for key,item in licenses.items() %}<td><span class="status yes">Yes, with conditions</span></td>{% endfor %}</tr>
+<tr><th>Attribution / notices</th>{% for key,item in licenses.items() %}<td><span class="status conditional">Required</span><small>{{ item.attribution }}</small></td>{% endfor %}</tr>
+<tr><th>Copyleft</th><td><span class="status no">No</span></td><td><span class="status yes">Yes</span><small>Covered distributed derivatives</small></td><td><span class="status no">No</span></td><td><span class="status no">No</span></td></tr>
+<tr><th>Explicit patent grant</th><td><span class="status no">No</span></td><td><span class="status conditional">GPLv3</span><small>Contributor patent license</small></td><td><span class="status yes">Yes</span></td><td><span class="status no">No explicit grant</span></td></tr>
+<tr><th>Compatibility notes</th><td>Generally compatible with many licenses; check combined distribution terms.</td><td>Version-specific compatibility matters; check GPL version and other components.</td><td>Includes patent and NOTICE provisions; check other license obligations.</td><td>BSD variants differ; check exact clause set and other components.</td></tr>
+</tbody></table></div><p class="small text-secondary mt-3">“Yes” does not mean condition-free. All licenses have conditions. Compatibility depends on exact versions, how components are combined and distributed, and other project facts.</p></section>
+{% endblock %}

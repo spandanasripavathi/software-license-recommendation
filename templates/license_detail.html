@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}{{ item.name }} | LicenseWise{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><a href="{{ url_for('licenses') }}" class="small text-decoration-none"><i class="bi bi-arrow-left"></i> All licenses</a><h1 class="fw-bold mt-3">{{ item.name }}</h1><p class="lead text-secondary">{{ item.description }}</p></div></section>
+<section class="container py-4"><div class="row g-4">
+<div class="col-lg-6"><div class="content-card h-100"><h4>Permissions</h4><ul>{% for x in item.permissions %}<li>{{ x }}</li>{% endfor %}</ul><h4 class="mt-4">Conditions</h4><ul>{% for x in item.conditions %}<li>{{ x }}</li>{% endfor %}</ul><h4 class="mt-4">Restrictions</h4><ul>{% for x in item.restrictions %}<li>{{ x }}</li>{% endfor %}</ul></div></div>
+<div class="col-lg-6"><div class="content-card h-100"><h4>Key characteristics</h4><p><b>Commercial use:</b> {{ item.commercial }}</p><p><b>Modification:</b> {{ item.modification }}</p><p><b>Distribution:</b> {{ item.distribution }}</p><p><b>Attribution:</b> {{ item.attribution }}</p><p><b>Copyleft:</b> {{ item.copyleft }}</p><p><b>Patent:</b> {{ item.patent }}</p><hr><h4>Advantages</h4><ul>{% for x in item.advantages %}<li>{{ x }}</li>{% endfor %}</ul><h4>Disadvantages</h4><ul>{% for x in item.disadvantages %}<li>{{ x }}</li>{% endfor %}</ul><a class="btn btn-outline-primary rounded-pill" href="{{ item.url }}" target="_blank" rel="noopener">Official license reference <i class="bi bi-box-arrow-up-right"></i></a></div></div>
+</div><p class="small text-secondary mt-3">License summaries are educational. Read the complete license text and consider qualified legal advice for important decisions.</p></section>
+{% endblock %}

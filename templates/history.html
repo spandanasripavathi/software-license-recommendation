@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}History | LicenseWise{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="eyebrow">YOUR SAVED RESULTS</span><h1 class="fw-bold mt-2">Recommendation history</h1><p class="lead text-secondary">Previous recommendations stored in this application's SQLite database.</p></div></section>
+<section class="container py-4"><div class="content-card table-responsive">
+{% if rows %}<table class="table align-middle"><thead><tr><th>Project</th><th>Recommended license</th><th>Date</th><th>Actions</th></tr></thead><tbody>{% for row in rows %}<tr><td class="fw-semibold">{{ row.project_name }}</td><td>{{ row.recommended_key }}</td><td>{{ row.created_at }}</td><td class="d-flex gap-2"><a class="btn btn-sm btn-outline-primary" href="{{ url_for('history_detail', record_id=row.id) }}">View</a><form method="post" action="{{ url_for('delete_history', record_id=row.id) }}" onsubmit="return confirm('Delete this recommendation?')"><button class="btn btn-sm btn-outline-danger">Delete</button></form></td></tr>{% endfor %}</tbody></table>
+{% else %}<div class="empty-state"><i class="bi bi-clock-history"></i><h4>No recommendations yet</h4><p>Your completed recommendations will appear here.</p><a class="btn btn-primary rounded-pill" href="{{ url_for('recommendation') }}">Create recommendation</a></div>{% endif %}
+</div></section>
+{% endblock %}

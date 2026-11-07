@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Recommendation | LicenseWise{% endblock %}
+{% block content %}
+<section class="page-hero"><div class="container"><span class="eyebrow">PERSONALIZED LICENSE CHECK</span><h1 class="fw-bold mt-2">Tell us about your project</h1><p class="lead text-secondary">Answer every question. The rule engine considers the combined requirements.</p></div></section>
+<section class="container py-4"><form method="post" class="content-card questionnaire" id="recommendationForm">
+<div class="mb-4"><label class="form-label fw-semibold" for="project_name">Project name</label><input class="form-control form-control-lg" id="project_name" name="project_name" maxlength="100" required value="{{ form_data.project_name if form_data else '' }}" placeholder="e.g. Student Attendance App"></div>
+{% set questions = [
+('commercial','1. Do you allow commercial use of your software?',[('yes','Yes'),('no','No')]),
+('modification','2. Do you allow users to modify your source code?',[('yes','Yes'),('no','No')]),
+('redistribution','3. Do you allow redistribution of your software?',[('yes','Yes'),('no','No')]),
+('same_license','4. Should distributed modified versions remain under the same license?',[('yes','Yes, require copyleft'),('no','No, permissive reuse is acceptable'),('not_sure','Not sure')]),
+('attribution','5. Do you require attribution / preservation of author notices?',[('yes','Yes'),('no','No preference / not sure')]),
+('patent','6. Do you need an explicit patent grant?',[('yes','Yes'),('no','No')]),
+('preference','7. Which license style do you prefer?',[('permissive','Permissive'),('copyleft','Copyleft'),('no_preference','No preference')])
+] %}
+{% for field, question, options in questions %}
+<div class="question-block"><label class="form-label fw-semibold">{{ question }}</label><div class="d-flex flex-wrap gap-2">
+{% for value, label in options %}
+<input class="btn-check" type="radio" name="{{ field }}" id="{{ field }}_{{ value }}" value="{{ value }}" required {% if form_data and form_data[field] == value %}checked{% endif %}>
+<label class="choice-pill" for="{{ field }}_{{ value }}">{{ label }}</label>
+{% endfor %}
+</div></div>
+{% endfor %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4"><span class="small text-secondary"><i class="bi bi-info-circle"></i> Your answers are saved in local project history.</span><button class="btn btn-primary btn-lg rounded-pill px-4" type="submit">Generate Recommendation <i class="bi bi-arrow-right"></i></button></div>
+</form></section>
+{% endblock %}
